@@ -78,7 +78,6 @@ end
 
 
 
-
 function V4_I1_kkkk_nonj(s, x, lecr)
     t, u = tu(KK, KK, s, x)
     _jbar(z,m1,m2) = 0; _jbbar(z,m1,m2) = 0
@@ -93,6 +92,20 @@ function V4_I1_kkkk_nonj(s, x, lecr)
 end
 
 V4_I1_kkkk_j(s, x, lecr) = V4_I1_kkkk(s, x, lecr) - V4_I1_kkkk_nonj(s, x, lecr)
+
+
+function St4_10!(tm, w, lecr)
+    _s = w^2
+    tm[1, 1] = swave(x->V4_I1_πηπη(_s, x, lecr))
+    tm[2, 1] = swave(x->V4_I1_πηkk(_s, x, lecr))
+    tm[1, 2] = tm[2, 1]
+    if w >= 2*KK.m1
+        tm[2, 2] = swave(x->V4_I1_kkkk(_s, x, lecr))
+    else
+        tm[2, 2] = swave(x->V4_I1_kkkk_nonj(_s, x, lecr) ) + real(swave(x->V4_I1_kkkk_j(_s, x, lecr)) )
+    end
+    return SMatrix{2,2}(tm)
+end
 
 function St4_11!(tm, w, lecr)
     _s = w^2

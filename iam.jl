@@ -36,6 +36,24 @@ function St4_00!(tm, w, lecr)
     return SMatrix{3,3}(tm)
 end
 
+# IJ = 10, channels: πη, KKbar
+function St2_10!(tm, w)
+    _s = w^2
+    tm[1, 1] = swave(x->V2_I1_πηπη(_s, x))
+    tm[2, 1] = swave(x->V2_I1_πηkk(_s, x))
+    tm[1, 2] = tm[2, 1]
+    tm[2, 2] = swave(x->V2_I1_kkkk(_s, x))
+    return SMatrix{2,2}(tm)
+end
+function St4_10!(tm, w, lecr)
+    _s = w^2
+    tm[1, 1] = swave(x->V4_I1_πηπη(_s, x, lecr))
+    tm[2, 1] = swave(x->V4_I1_πηkk(_s, x, lecr))
+    tm[1, 2] = tm[2, 1]
+    tm[2, 2] = swave(x->V4_I1_kkkk(_s, x, lecr))
+    return SMatrix{2,2}(tm)
+end
+
 # IJ = 11, channels: ππ, KKbar; note πη have negative G-parity and decouples
 # this indeed happens to be zero, as a check of the code
 function St2_11!(tm, w)
@@ -112,9 +130,9 @@ t4_strange_30(w, lecr) = swave(x->V4_I3_kπkπ(w^2, x, lecr));
 
 #=
 this code-generation block generates IAM amplitudes:
-Stiam_00(w, lecr), Stiam_11(w, lecr), Stiam_strange_10(w, lecr), Stiam_strange_11(w, lecr):
+Stiam_00(w, lecr), Stiam_10(w, lecr), Stiam_11(w, lecr), Stiam_strange_10(w, lecr), Stiam_strange_11(w, lecr):
 =#
-for str in ["00", "11", "strange_10", "strange_11"]
+for str in ["00", "10", "11", "strange_10", "strange_11"]
     _fnames = Symbol("Stiam_$(str)")
     _t2 = Symbol("St2_$(str)!")
     _t4 = Symbol("St4_$(str)!")
