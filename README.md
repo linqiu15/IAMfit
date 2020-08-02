@@ -8,5 +8,5 @@ Fit to meson-meson scattering data using coupled-channel IAM with unitarity fulf
 
 The jupyter notebook `iamfit.ipynb` performing the IAM fit can be played interactively on line by clicking
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/fkguo/IAMfit/master)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/fkguo/IAMfit/master?urlpath=lab)
 
