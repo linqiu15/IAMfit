@@ -1,3 +1,5 @@
+qon(s, m1, m2) = sqrt((s - (m1+m2)^2) * (s - (m1-m2)^2))/(2sqrt(s))
+
 function δ00_0(w, lec) # without considering continuity
     _m1, _m2 = ππ.m1, ππ.m2
     if w ≥ _m1 + _m2
