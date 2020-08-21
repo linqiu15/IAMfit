@@ -58,6 +58,36 @@ function δ11(w, lec)
     return res < 0 ? res + 180 : res
 end
 
+
+function δ10_πη_0(w, lec)
+    _m1, _m2 = πη.m1, πη.m2
+    if w ≥ _m1 + _m2
+        _q = qon(w^2, _m1, _m2)
+        _tm = Stiam_10(w, lec)[1, 1]
+        res = 0.5atand(real(_tm), -imag(_tm) + 4π*w/_q )
+    else
+        res = 0.0
+    end
+    return  res
+end
+function δ10_πη(w, lec)
+    res = δ10_πη_0(w, lec)
+    return res < 0 ? res + 180 : res
+end
+
+function δ10_kk(w, lec)
+    _m1, _m2 = KK.m1, KK.m2
+    if w ≥ _m1 + _m2
+        _q = qon(w^2, _m1, _m2)
+        _tm = Stiam_10(w, lec)[2, 2]
+        res = 0.5atand(real(_tm), -imag(_tm) + 4π*w/_q )
+    else
+        res = 0.0
+    end
+    return  res
+end
+
+
 function δ20(w, lec)
     _m1, _m2 = ππ.m1, ππ.m2
     if w ≥ _m1 + _m2

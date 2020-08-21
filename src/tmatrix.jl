@@ -157,3 +157,13 @@ function tiam_strange_30(w, lecr)
     _t2 = t2_strange_30(w); _t4 = t4_strange_30(w, lecr)
     return _t2^2/(_t2 - _t4)
 end;
+
+
+# IJ = 01, channel: KKbar
+t2_01(w) = pwave(x->V2_I0_kkkk(w^2, x))
+t4_01(w, lecr) = pwave(x->V4_I0_kkkk(w^2, x, lecr))
+
+function tiam_01(w, lecr)
+    _t2 = t2_01(w); _t4 = t4_01(w, lecr)
+    return _t2^2/(_t2 - _t4)
+end;
